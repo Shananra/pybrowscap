@@ -105,6 +105,9 @@ def load_file(browscap_file_path):
                     continue
                 if line['Parent'] == 'DefaultProperties':
                     continue
+                if line['PropertyName'] == 'DefaultProperties' and defaults == {}:
+                    defaults = line
+                    continue
                 line = replace_defaults(line, defaults)
                 try:
                     ua_regex = '^{0}$'.format(re.escape(line['propertyname']))
